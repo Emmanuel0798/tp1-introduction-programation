@@ -1,4 +1,5 @@
 import os
+import time
 print("Run\n")
 
 # Constantes : 
@@ -168,3 +169,15 @@ while choixMenu != QUITTER :
                 print("\nFaites votre choix : ")
                 choixInventaire = input(" > ")
                 listeInventaire[2] = choixInventaire - 1
+
+os.system("cls")
+
+for i in range(3) : 
+    print(i, ":", listeCompString[i - 1], "\t:", listeCompetence[i - 1])
+
+print("\nCasques : ", listeCasques[listeInventaire[0]])
+print("Bottes : ", listeBottes[listeInventaire[1]])
+print("Gants : ", listeGants[listeInventaire[2]])
+
+print("\nMerci d'avoir fait confiance à notre équipe !")
+time.sleep(3)
