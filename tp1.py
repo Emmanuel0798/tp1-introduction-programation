@@ -1,79 +1,170 @@
 import os
 print("Run\n")
 
-while True:     # Boucle de l'application
-    os.system("cls")
+# Constantes : 
+BON_LOGIN = "demon"
+BON_PASSWORD = "interieur"
+RECOMMENCER = 'r'
+QUITTER = 'q'
+COMPETENCE = 'c'
+INVENTAIRE = 'i'
+CASQUES = 'c'
+BOTTES = 'b'
+GANTS	= 'g'
+EDITER = 'e'
+MENU_PRINCIPAL = 'm'
+MAX_COMPETENCE = 10
+MAX_TOTAL_COMPETENCE = 15
+COMPETENCE_DEPART  = 5
 
-    login = input("Veuillez entrer votre login :\n > ")
-    motDePasse = input("Veuillez entrer votre mot de passe :\n > ")
-    os.system("cls")
+# Variable : 
+login = ""
+motPasse = ""
+choixMenu = ''
+valeurComp = None
+choixInventaire = None
 
-    # Variable pour déterminer si l'utilisateur veut quitter la boucle de l'application
-    quitterLogin = False 
+listeCompetence = [5,5,5]
+listeCompString = "Stupidité", "Faiblesse", "Gaucherie"
+listeInventaire = None
+listeCasques = "Casse de bain", "Perruque", "Chapeau melon"
+listeBottes = "Bottes de cowboy", "Bottes à talon haut", "Bottes à cap"		
+listeGants = "Gants de travail", "Gant de baseball", "Gants de meurtrier"
 
-    if login != "démon" or motDePasse != "intérieur":
-        while True:    
-            # Boucle pour recommencer le login si l'utilisateur utilise une mauvaise commande
-            os.system("cls")
-            print("Erreur dans le login ou le mot de passe")
-            choix = input("Veuillez (r)ecommencer ou (q)uitter :\n > ")
-            if choix == "r" or choix == "R":
-                os.system("cls")
-                confirmationChoix = input("Voulez vous vraiment recommencer ? (oui/non) :\n > ")
-                if confirmationChoix == "oui" or confirmationChoix == "Oui" or confirmationChoix == "OUI":
-                    break
-                elif confirmationChoix == "non" or confirmationChoix == "Non" or confirmationChoix == "NON":
-                    os.system("cls")
-                    input("Bien, donc veuillez recommencer votre choix.\nEnter...")
-                    continue
-            elif choix == "q" or choix == "Q":
-                os.system("cls")
-                confirmationChoix = input("Voulez vous vraiment quitter ? (oui/non) :\n > ")
-                if confirmationChoix == "oui" or confirmationChoix == "Oui" or confirmationChoix == "OUI":
-                    quitterLogin = True
-                    break
-                elif confirmationChoix == "non" or confirmationChoix == "Non" or confirmationChoix == "NON":
-                    os.system("cls")
-                    input("Bien, donc veuillez recommencer votre choix.\nEnter...")
-                    continue
-            else:
-                os.system("cls")
-                input("Vous avez taper une mauvaise commande, veuillez recommencer votre choix\nEnter... ")
-                continue      
-    else:
-        # Si l'utilisateur a entrer les bonnes identifiants, l'application commence ici :
-        os.system("cls")
-        print("Démarage de l'application")
-        input("Enter...")
+erreur = None
+quitter = None
+totalCompetence = None
 
-        pointDeStupidite = 5
-        pointDeFaiblesse = 5
-        pointDeGaucherie = 5
-
-        print("(C)ompétence\n(I)nventaire\n(Quitter)")
-        choixJeu = input("Faite votre choix\n > ")
-        if  choixJeu == "q" or choixJeu == "Q":
-            break
-        elif choixJeu == "i" or choixJeu == "I":
-
-        elif  choixJeu == "c" or choixJeu == "C":
-            os.system("cls")
-            print("1 : Stupidité    5\n2 : Faiblesse    5\nGaucherie :  5")
-            choixCompetence = input("Faite votre choix\n > ")
-            if choixCompetence == 1:
-                pointDeStupidité = input(f"Stupidité : {pointDeStupidite}\nEntrer la nouvelle valeur :\n > ")
-            if choixCompetence == 2:
-                pointDeFaiblesse = input(f"Faiblesse  : {pointDeFaiblesse}")
-            if choixCompetence == 3:
-
-            
-        break
-
-    # Condition pour savoir si l'utilisateur veut quitté la boucle pour le login
-    if quitterLogin:
-        break
-
-
-
+# Début du code
 os.system("cls")
-print("Fin du programme")
+
+erreur = False
+quitter = False
+# for i < 2 :
+# NE COMPREND PAS CETTE PARTIE DU CODE, À REVOIR ABSOLUMENT À LA FIN DU CODE
+
+print("Veuillez entrer le login : ")    
+login = input(" > ")
+
+print("Veuillez entrer votre mot de passe : ")
+motPasse = input(" > ")
+
+if login != BON_LOGIN or motPasse != BON_PASSWORD :
+    erreur = True
+
+while erreur == True : 
+    print("Erreur dans le login ou le mot de pass")
+    print("Veuillez (r)ecommencer ou (q)uitter : ")
+    choixMenu = input(" > ")
+
+    while choixMenu != QUITTER and choixMenu != RECOMMENCER : 
+        print("L'option choisie n'est pas valide ! Faite à nouveau un choix !")
+        print("Veuillez (r)ecommencer ou (q)uitter : ")
+        input(" > ")
+    
+    os.system("cls")
+
+    if choixMenu == RECOMMENCER : 
+        print("Veuillez entrer le login  : ")
+        login = input(" > ")
+        
+        print("Veuillez entrer le mot de passe : ")
+        motPasse = input(" > ")
+
+        if motPasse != BON_PASSWORD or login != BON_LOGIN : 
+            erreur = True
+        else : 
+            erreur = False
+    else : 
+        erreur = False
+        quitter = True 
+
+while choixMenu != QUITTER :
+    os.system("cls")
+
+    print("(C)ompétences")
+    print("(I)nventaire")
+    print("(Q)uitter")
+
+    print("\nFaites votre choix : ")
+    choixMenu = input(" > ")
+
+    if choixMenu == COMPETENCE :
+        while choixMenu != MENU_PRINCIPAL : 
+            os.system("cls")
+
+            for i in range(3)  :
+                print(f"{i + 1}:{listeCompString[i]}    {listeCompetence[i]}")
+            print("\nFaites votre choix : ")
+            choixMenu = input(" > ")
+
+            print(f"La valeur de la compétence choisi est de {listeCompetence[i - 1]}")
+            print("Entrez la nouvelle valeur : ")
+            valeurComp = input(" > ")
+
+            while valeurComp < 0 or valeurComp > MAX_COMPETENCE : 
+                print("La valeur doit être comprise entre 0 et 10 !")
+                print("Entrez la nouvelle valeur : ")
+                valeurComp = input(" > ")
+
+            totalCompetence = 0
+
+            for i in range(3) : 
+                if i != choixMenu : 
+                    totalCompetence = totalCompetence + listeCompetence[i - 1]
+            
+            if totalCompetence + valeurComp > MAX_TOTAL_COMPETENCE :
+                print(f"Le total des compétence ne doit pas dépasser {MAX_TOTAL_COMPETENCE}")
+
+                valeurComp = MAX_COMPETENCE - totalCompetence
+            
+            listeCompetence[choixMenu - 1] = valeurComp
+
+            for i in range(3) : 
+                print(f"{i + 1}:{listeCompString[i]}    {listeComptence[i]}")
+
+            print("(M)enu principal ou (e)diter une autre compétence : ")
+            choixMenu = input(" > ")
+        
+    elif choixMenu == INVENTAIRE :
+        while choixMenu != MENU_PRINCIPAL : 
+            os.system("cls")
+
+            print("(C)asque")
+            print("(B)otte")
+            print("(G)ants")
+            print("(M)enu principal")
+
+            print("\nFaites votre choix : ")
+            choixMenu = input(" > ")
+
+            os.system("cls")
+
+            if choixMenu == CASQUES :
+                print("Casques : ", listeCasques[listeInventaire[0]])
+
+                for i in range(3) :
+                    print(i, ":", listeCasques[i - 1])
+                
+                print("Faites votre choix : ") 
+                choixInventaire = input(" > ")
+
+                listeInventaire[0] = choixInventaire - 1
+            elif choixMenu == BOTTES :
+                print("Bottes : ", listeBottes[listeInventaire[1]])
+
+                for i in range(3) : 
+                    print(i, ":", listeBottes[i - 1])
+                
+                print("\nFaites votre choix")
+                choixInventaire = input(" > ")
+
+                listeInventaire[1] = choixInventaire - 1
+            elif choixMenu == GANTS : 
+                print("Gants :", listeGants[listeInventaire[2]])
+                for i in range(3) : 
+                    print(i, ":", listeGants[i - 1])
+
+                print("\nFaites votre choix : ")
+                choixInventaire = input(" > ")
+                listeInventaire[2] = choixInventaire - 1
