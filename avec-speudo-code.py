@@ -27,14 +27,14 @@ choixInventaire = None
 
 listeCompetence = [5,5,5]
 listeCompString = "Stupidité", "Faiblesse", "Gaucherie"
-listeInventaire = None
+listeInventaire = [0, 1, 2]
 listeCasques = "Casse de bain", "Perruque", "Chapeau melon"
 listeBottes = "Bottes de cowboy", "Bottes à talon haut", "Bottes à cap"		
 listeGants = "Gants de travail", "Gant de baseball", "Gants de meurtrier"
 
 erreur = None
 quitter = None
-totalCompetence = None
+totalCompetence = 0
 
 # Début du code
 os.system("cls")
@@ -61,7 +61,7 @@ while erreur == True :
     while choixMenu != QUITTER and choixMenu != RECOMMENCER : 
         print("L'option choisie n'est pas valide ! Faite à nouveau un choix !")
         print("Veuillez (r)ecommencer ou (q)uitter : ")
-        input(" > ")
+        choixMenu = input(" > ")
     
     os.system("cls")
 
@@ -97,18 +97,18 @@ while choixMenu != QUITTER :
             for i in range(3)  :
                 print(f"{i + 1}:{listeCompString[i]}    {listeCompetence[i]}")
             print("\nFaites votre choix : ")
-            choixMenu = input(" > ")
+            choixMenu = int(input(" > "))
 
-            print(f"La valeur de la compétence choisi est de {listeCompetence[i - 1]}")
+            print(f"La valeur de la compétence choisi est de {listeCompetence[(choixMenu - 1)]}")
             print("Entrez la nouvelle valeur : ")
-            valeurComp = input(" > ")
+            valeurComp = int(input(" > "))
 
             while valeurComp < 0 or valeurComp > MAX_COMPETENCE : 
                 print("La valeur doit être comprise entre 0 et 10 !")
                 print("Entrez la nouvelle valeur : ")
-                valeurComp = input(" > ")
+                valeurComp = int(input(" > "))
 
-            totalCompetence = 0
+            totalCompetence = 0 
 
             for i in range(3) : 
                 if i != choixMenu : 
@@ -122,7 +122,7 @@ while choixMenu != QUITTER :
             listeCompetence[choixMenu - 1] = valeurComp
 
             for i in range(3) : 
-                print(f"{i + 1}:{listeCompString[i]}    {listeComptence[i]}")
+                print(f"{i + 1}:{listeCompString[i]}    {listeCompetence[i]}")
 
             print("(M)enu principal ou (e)diter une autre compétence : ")
             choixMenu = input(" > ")
@@ -148,7 +148,7 @@ while choixMenu != QUITTER :
                     print(i, ":", listeCasques[i - 1])
                 
                 print("Faites votre choix : ") 
-                choixInventaire = input(" > ")
+                choixInventaire = int(input(" > "))
 
                 listeInventaire[0] = choixInventaire - 1
             elif choixMenu == BOTTES :
@@ -158,7 +158,7 @@ while choixMenu != QUITTER :
                     print(i, ":", listeBottes[i - 1])
                 
                 print("\nFaites votre choix")
-                choixInventaire = input(" > ")
+                choixInventaire = int(input(" > "))
 
                 listeInventaire[1] = choixInventaire - 1
             elif choixMenu == GANTS : 
@@ -167,7 +167,7 @@ while choixMenu != QUITTER :
                     print(i, ":", listeGants[i - 1])
 
                 print("\nFaites votre choix : ")
-                choixInventaire = input(" > ")
+                choixInventaire = int(input(" > "))
                 listeInventaire[2] = choixInventaire - 1
 
 os.system("cls")
