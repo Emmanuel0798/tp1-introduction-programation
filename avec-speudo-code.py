@@ -41,8 +41,9 @@ os.system("cls")
 
 erreur = False
 quitter = False
-# for i < 2 :
-# NE COMPREND PAS CETTE PARTIE DU CODE, À REVOIR ABSOLUMENT À LA FIN DU CODE
+
+for i in range(3) : 
+    listeCompetence[i] = 5
 
 print("Veuillez entrer le login : ")    
 login = input(" > ")
@@ -111,13 +112,13 @@ while choixMenu != QUITTER :
             totalCompetence = 0 
 
             for i in range(3) : 
-                if i != choixMenu : 
+                if i + 1 != choixMenu : 
                     totalCompetence = totalCompetence + listeCompetence[i - 1]
             
             if totalCompetence + valeurComp > MAX_TOTAL_COMPETENCE :
                 print(f"Le total des compétence ne doit pas dépasser {MAX_TOTAL_COMPETENCE}")
 
-                valeurComp = MAX_COMPETENCE - totalCompetence
+                valeurComp = MAX_TOTAL_COMPETENCE - totalCompetence
             
             listeCompetence[choixMenu - 1] = valeurComp
 
